@@ -14,8 +14,8 @@ public class Project {
     @Column(name= "project_name",  nullable = false)
     private String projectName;
 
-    @ManyToMany(targetEntity = Employee.class, cascade = { CascadeType.ALL })
-    @JoinTable(name = "WorksOn",
+    @ManyToMany (fetch = FetchType.EAGER, targetEntity = Employee.class, cascade = { CascadeType.ALL })
+    @JoinTable(name = "works_on",
             joinColumns = { @JoinColumn(name = "project_id") },
             inverseJoinColumns = { @JoinColumn(name = "emp_id") })
     private List<Employee> employeesList;
@@ -26,7 +26,6 @@ public class Project {
     }
 
     public Project(){}
-
 
     public int getProjectID() {
         return projectID;
@@ -52,5 +51,12 @@ public class Project {
         this.employeesList = employeesList;
     }
 
-
+    @Override
+    public String toString() {
+        return "\nProject{" +
+                "projectID=" + projectID +
+                ", projectName='" + projectName + '\'' +
+                ", \nemployeesList=" + employeesList +
+                '}';
+    }
 }

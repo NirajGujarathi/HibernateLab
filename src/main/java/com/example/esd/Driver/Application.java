@@ -20,7 +20,8 @@ public class Application {
 
         runHibernateLab();
 
-        System.out.println("End");
+        System.out.println("Application Ended");
+        System.out.println("-----------------------------------------------------------");
     }
 
     private static void runHibernateLab() {
@@ -50,23 +51,23 @@ public class Application {
         EmployeeDAO empdao= new EmployeeDAOImpl();
         // add employees
         Employee emp1= new Employee();
-        emp1.setEmployeeName("emp1");
+        emp1.setEmployeeName("John");
         emp1.setEmployeeGender("male");
         emp1.setSalary(120000);
         Employee emp2= new Employee();
-        emp2.setEmployeeName("emp2");
+        emp2.setEmployeeName("Jennifer");
         emp2.setEmployeeGender("female");
         emp2.setSalary(130000);
         Employee emp3= new Employee();
-        emp3.setEmployeeName("emp3");
+        emp3.setEmployeeName("Franklin");
         emp3.setEmployeeGender("male");
         emp3.setSalary(90000);
         Employee emp4= new Employee();
-        emp4.setEmployeeName("emp4");
+        emp4.setEmployeeName("Bob");
         emp4.setEmployeeGender("male");
         emp4.setSalary(160000);
         Employee emp5= new Employee();
-        emp5.setEmployeeName("emp5");
+        emp5.setEmployeeName("Alice");
         emp5.setEmployeeGender("female");
         emp5.setSalary(115000);
 
@@ -110,7 +111,7 @@ public class Application {
 
         // delete employee
         int empID= 4;
-        if(empdao.deleteEmployee(5))
+        if(empdao.deleteEmployee(empID))
             System.out.println("Employee Delete Success");
         else
             System.out.println("Delete failed");
@@ -135,36 +136,56 @@ public class Application {
         System.out.println("-----------------------------------------------------------");
 
         //add projects
-//        Project p1=new Project("DataScience");
-//        List<Employee> emplist1=new ArrayList<>();
-//        emplist1.add(emp1);
-//        emplist1.add(emp5);
-//        p1.setEmployeesList(emplist1);
-//
-//        Project p2=new Project("Development");
-//        List<Employee> emplist2=new ArrayList<>();
-//        emplist2.add(emp3);
-//        emplist2.add(emp1);
-//        p2.setEmployeesList(emplist2);
-//
-//        Project p3=new Project("QA-Support");
-//        List<Employee> emplist3=new ArrayList<>();
-//        emplist3.add(emp2);
-//        emplist3.add(emp3);
-//        p3.setEmployeesList(emplist3);
-//
-//
-//        ProjectDAO pDAO= new ProjectDAOImpl();
-//        pDAO.addProject(p1);
-//        pDAO.addProject(p2);
-//        pDAO.addProject(p3);
-//
-//        System.out.println("Project added Successfully!");
+        Project p1=new Project("DataScience");
+        List<Employee> emplist1=new ArrayList<>();
+        emplist1.add(emp1);
+        emplist1.add(emp5);
+        p1.setEmployeesList(emplist1);
+
+        Project p2=new Project("Development");
+        List<Employee> emplist2=new ArrayList<>();
+        emplist2.add(emp3);
+        emplist2.add(emp1);
+        p2.setEmployeesList(emplist2);
+
+        Project p3=new Project("QA-Support");
+        List<Employee> emplist3=new ArrayList<>();
+        emplist3.add(emp2);
+        emplist3.add(emp3);
+        p3.setEmployeesList(emplist3);
+
+
+        ProjectDAO pDAO= new ProjectDAOImpl();
+        pDAO.addProject(p1);
+        pDAO.addProject(p2);
+        pDAO.addProject(p3);
+
+        System.out.println("Project added successfully!");
+        System.out.println("-----------------------------------------------------------");
+
 
         // get all projects
+        List<Project> projList= pDAO.getProjectList();
+        if(projList.size()>0){
+            for(Project p: projList){
+                System.out.println(p);
+            }
+        }
+        else{
+            System.out.println("no projects :)");
+        }
+        System.out.println("Projects retrieved successfully!");
+        System.out.println("-----------------------------------------------------------");
 
 
-        // update project name
+        // update project name to AI_ML for project ID =1
+        int pid= 1;
+        boolean res= pDAO.updateProjectName(pid,"AI_ML");
+        if(res)
+            System.out.println("Project name update successfully! to AI_ML");
+        else
+            System.out.println("can not update ");
+        System.out.println("-----------------------------------------------------------");
 
     }
 }

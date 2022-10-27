@@ -17,7 +17,7 @@ public class ProjectDAOImpl implements ProjectDAO {
     public boolean addProject(Project projectObj) {
         try(Session session = HibernateSessionUtil.getSession()){
             Transaction t = session.beginTransaction();
-            session.persist(projectObj);
+            session.save(projectObj);
             t.commit();
             return true;
         } catch (HibernateException exception) {

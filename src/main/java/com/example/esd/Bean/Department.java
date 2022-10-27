@@ -29,7 +29,6 @@ public class Department {
         this.departmentID = departmentID;
         this.departmentName = departmentName;
         this.deptAddress = deptAddress;
-//        this.employeesList = employeesList;
     }
 
     public int getDepartmentID() {
@@ -70,7 +69,6 @@ public class Department {
                 "departmentID=" + departmentID +
                 ", departmentName='" + departmentName + '\'' +
                 ", deptAddress='" + deptAddress + '\'' +
-//                ", employeesList=" + employeesList +
                 '}';
     }
 }
