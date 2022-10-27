@@ -42,6 +42,10 @@ public class EmployeeDAOImpl implements EmployeeDAO {
 
     }
 
+    // create query in salary range
+    // create namedQuery
+
+
     @Override
     public Employee getEmployeeByID(int empID) {
 

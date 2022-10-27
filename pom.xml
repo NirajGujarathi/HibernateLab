@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.example</groupId>
-    <artifactId>ESDHibernateLab</artifactId>
+    <artifactId>HibernateLab</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -14,24 +14,20 @@
     </properties>
 
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.5.3.Final</version>
-        </dependency>
-
-        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.31</version>
-        </dependency>
-
+            <dependency>
+                <groupId>org.hibernate</groupId>
+                <artifactId>hibernate-core</artifactId>
+                <version>6.1.4.Final</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>8.0.31</version>
+            </dependency>
     </dependencies>
 
 
-<!--    in case above version is not working uncomment following versions and remove above lines-->
+<!--    in case above version is not working for java 8 uncomment following versions and remove above lines-->
 <!--    <dependencies>-->
 <!--        <dependency>-->
 <!--            <groupId>org.hibernate</groupId>-->

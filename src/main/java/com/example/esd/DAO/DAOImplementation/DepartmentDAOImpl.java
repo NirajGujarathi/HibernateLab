@@ -18,7 +18,7 @@ public class DepartmentDAOImpl implements DepartmentDAO {
         }
         catch (HibernateException exception) {
             // if Hibernate Exception occurs return false
-            // for related exception we can maintain separate logger / sysout messages for easy debugging
+            // for related exception we can maintain separate logger / Sysout messages for easy debugging
             System.out.println("Hibernate Exception");
             System.out.print(exception.getLocalizedMessage());
             return false;

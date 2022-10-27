@@ -15,12 +15,12 @@ public class Application {
     public static void main(String[] args) {
         System.out.println("Application Started");
 
-        runHibernateDemo();
+        runHibernateLab();
 
         System.out.println("End");
     }
 
-    private static void runHibernateDemo() {
+    private static void runHibernateLab() {
 
 
         DepartmentDAO deptdao= new DepartmentDAOImpl();
@@ -39,12 +39,12 @@ public class Application {
         EmployeeDAO empdao= new EmployeeDAOImpl();
         // add employees
         Employee emp1= new Employee();
-        emp1.setEmployeeName("niraj");
+        emp1.setEmployeeName("emp1");
         emp1.setEmployeeGender("male");
         emp1.setSalary(120000);
         Employee emp2= new Employee();
-        emp2.setEmployeeName("jasvin");
-        emp2.setEmployeeGender("male");
+        emp2.setEmployeeName("emp2");
+        emp2.setEmployeeGender("female");
         emp2.setSalary(130000);
 
         emp1.setDepartment(dept2);
@@ -67,8 +67,6 @@ public class Application {
         else{
             System.out.println("no employees");
         }
-
-
 
     }
 }
