@@ -1,6 +1,6 @@
 package com.example.esd.Bean;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name="employee")     //  you can specify MySQL table name it is optional; by-default it takes class name as table name
@@ -10,7 +10,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int employeeID;
 
-    @Column(name = "emp_name")
+    @Column(name = "emp_name", nullable = false)
     private String employeeName;
 
     @Column(name= "emp_gender")

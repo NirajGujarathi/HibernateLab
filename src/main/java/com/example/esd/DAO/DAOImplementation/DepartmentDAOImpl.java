@@ -1,11 +1,14 @@
 package com.example.esd.DAO.DAOImplementation;
 
 import com.example.esd.Bean.Department;
+import com.example.esd.Bean.Employee;
 import com.example.esd.DAO.DepartmentDAO;
 import com.example.esd.Util.HibernateSessionUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+
+import java.util.List;
 
 public class DepartmentDAOImpl implements DepartmentDAO {
     @Override
@@ -28,5 +31,16 @@ public class DepartmentDAOImpl implements DepartmentDAO {
             System.out.print(e.getLocalizedMessage());
             return false;
         }
+    }
+
+    @Override
+    public List<Employee> employeeListInDepartment(int deptID) {
+        try (Session session = HibernateSessionUtil.getSession()) {
+            Department deptObj=session.get(Department.class, deptID);
+            return deptObj.getEmployeesList();
+        } catch (HibernateException exception) {
+            System.out.print(exception.getLocalizedMessage());
+        }
+        return null;
     }
 }

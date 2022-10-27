@@ -1,25 +1,27 @@
 package com.example.esd.Bean;
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
+
 import java.util.List;
 
 
 @Entity
-@Table (name= "department")
+@Table(name= "department")
 public class Department {
     @Id
     @Column(name ="dept_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int departmentID;
 
-    @Column(name="dept_name")
+    @Column(name="dept_name",nullable = false,unique = true)
     private String departmentName;
 
     @Column(name="dept_address")
     private String deptAddress;
 
-//    @OneToMany
-//    @JoinColumn(name="empList")
-//    private List<Employee> employeesList;
+    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)    // name of class member variable in Employee class; it will be mapped with that variable
+    @JsonIgnore
+    private List<Employee> employeesList;
 
     public Department() {
     }
@@ -55,13 +57,13 @@ public class Department {
         this.deptAddress = deptAddress;
     }
 
-//    public List<Employee> getEmployeesList() {
-//        return employeesList;
-//    }
-//
-//    public void setEmployeesList(List<Employee> employeesList) {
-//        this.employeesList = employeesList;
-//    }
+    public List<Employee> getEmployeesList() {
+        return employeesList;
+    }
+
+    public void setEmployeesList(List<Employee> employeesList) {
+        this.employeesList = employeesList;
+    }
 
     @Override
     public String toString() {

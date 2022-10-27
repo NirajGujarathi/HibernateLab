@@ -6,6 +6,8 @@ import java.util.List;
 
 public interface EmployeeDAO {
     boolean addEmployee(Employee empObj);
-    List<Employee> getEmployees();
     Employee getEmployeeByID (int empID);
+    List<Employee> getEmployeeSalaryInRange(long lowerBound, long upperBound);
+    boolean deleteEmployee(int empID);
+    Double avgSalary();
 }
