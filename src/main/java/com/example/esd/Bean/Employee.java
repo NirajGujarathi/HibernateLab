@@ -2,6 +2,8 @@ package com.example.esd.Bean;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name="employee")     //  you can specify MySQL table name it is optional; by-default it takes class name as table name
 public class Employee {
@@ -20,8 +22,8 @@ public class Employee {
     private long salary;
 
     @ManyToOne
-    @JoinColumn(name="employee_dept_id")
-    private Department department;
+    @JoinColumn(name="employee_dept_id", nullable = false)
+    private Department empDepartment;
 
     public Employee(){
 
@@ -32,7 +34,7 @@ public class Employee {
         this.employeeName = employeeName;
         this.employeeGender = employeeGender;
         this.salary = salary;
-        this.department = department;
+        this.empDepartment = department;
     }
 
     public int getEmployeeID() {
@@ -68,14 +70,31 @@ public class Employee {
     }
 
     public Department getDepartment() {
-        return department;
+        return empDepartment;
     }
 
     public void setDepartment(Department department) {
-        this.department = department;
+        this.empDepartment = department;
     }
 
+    public Department getEmpDepartment() {
+        return empDepartment;
+    }
+
+    public void setEmpDepartment(Department empDepartment) {
+        this.empDepartment = empDepartment;
+    }
+
+//    public List<Project> getProjectList() {
+//        return projectList;
+//    }
+//
+//    public void setProjectList(List<Project> projectList) {
+//        this.projectList = projectList;
+//    }
+
     // to string to print object as a string otherwise it returns object Hashcode
+
     @Override
     public String toString() {
         return "Employee{" +
@@ -83,7 +102,7 @@ public class Employee {
                 ", employeeName='" + employeeName + '\'' +
                 ", employeeGender='" + employeeGender + '\'' +
                 ", salary=" + salary +
-                ", department=" + department +
+                ", empDepartment=" + empDepartment +
                 '}';
     }
 }

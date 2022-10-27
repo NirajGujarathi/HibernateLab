@@ -2,10 +2,13 @@ package com.example.esd.Driver;
 
 import com.example.esd.Bean.Department;
 import com.example.esd.Bean.Employee;
+import com.example.esd.Bean.Project;
 import com.example.esd.DAO.DAOImplementation.DepartmentDAOImpl;
 import com.example.esd.DAO.DAOImplementation.EmployeeDAOImpl;
+import com.example.esd.DAO.DAOImplementation.ProjectDAOImpl;
 import com.example.esd.DAO.DepartmentDAO;
 import com.example.esd.DAO.EmployeeDAO;
+import com.example.esd.DAO.ProjectDAO;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -23,6 +26,7 @@ public class Application {
     private static void runHibernateLab() {
 
 
+        System.out.println("-----------------------------------------------------------");
         DepartmentDAO deptdao= new DepartmentDAOImpl();
         // add department
         Department dept1= new Department();
@@ -39,6 +43,8 @@ public class Application {
         dept3.setDepartmentName("Sales");
         dept3.setDeptAddress("Mumbai");
         deptdao.addDepartment(dept3);
+        System.out.println("--- \tDepartments Added Successfully! ---");
+        System.out.println("-----------------------------------------------------------");
 
 
         EmployeeDAO empdao= new EmployeeDAOImpl();
@@ -65,21 +71,27 @@ public class Application {
         emp5.setSalary(115000);
 
         emp1.setDepartment(dept2);
-        emp2.setDepartment(dept1);
+        emp2.setDepartment(dept3);
         emp3.setDepartment(dept2);
         emp4.setDepartment(dept1);
-        emp5.setDepartment(dept3);
+        emp5.setDepartment(dept1);
 
         empdao.addEmployee(emp1);
         empdao.addEmployee(emp2);
         empdao.addEmployee(emp3);
         empdao.addEmployee(emp4);
         empdao.addEmployee(emp5);
+        System.out.println("--- \tEmployees Added Successfully! ---");
+        System.out.println("-----------------------------------------------------------");
 
 
         //retrieve employee by employeeID
         Employee empFromDB= empdao.getEmployeeByID(1);
+
+        System.out.println("--- \tRetrieved Employee using EmployeeID ---");
         System.out.println(empFromDB);
+        System.out.println("-----------------------------------------------------------");
+
 
         // get list of employee in salary range
         long lowerBound = 100000;
@@ -93,17 +105,21 @@ public class Application {
         else{
             System.out.println("no employees in given salary range");
         }
+        System.out.println("--- \tRetrieved Employees in given salary range " +lowerBound+" - "+ upperBound+ "  ---");
+        System.out.println("-----------------------------------------------------------");
 
         // delete employee
         int empID= 4;
-        if(empdao.deleteEmployee(4))
-            System.out.println("Delete Success");
+        if(empdao.deleteEmployee(5))
+            System.out.println("Employee Delete Success");
         else
             System.out.println("Delete failed");
+        System.out.println("-----------------------------------------------------------");
 
         // avg salary
         Double avgSalary= empdao.avgSalary();
         System.out.println("Average Salary of all Employees= "+avgSalary);
+        System.out.println("-----------------------------------------------------------");
 
 
         // get employee list of department=2  emp1 and emp3 should be returned
@@ -116,10 +132,34 @@ public class Application {
         else{
             System.out.println("no employees in department");
         }
-
+        System.out.println("-----------------------------------------------------------");
 
         //add projects
-
+//        Project p1=new Project("DataScience");
+//        List<Employee> emplist1=new ArrayList<>();
+//        emplist1.add(emp1);
+//        emplist1.add(emp5);
+//        p1.setEmployeesList(emplist1);
+//
+//        Project p2=new Project("Development");
+//        List<Employee> emplist2=new ArrayList<>();
+//        emplist2.add(emp3);
+//        emplist2.add(emp1);
+//        p2.setEmployeesList(emplist2);
+//
+//        Project p3=new Project("QA-Support");
+//        List<Employee> emplist3=new ArrayList<>();
+//        emplist3.add(emp2);
+//        emplist3.add(emp3);
+//        p3.setEmployeesList(emplist3);
+//
+//
+//        ProjectDAO pDAO= new ProjectDAOImpl();
+//        pDAO.addProject(p1);
+//        pDAO.addProject(p2);
+//        pDAO.addProject(p3);
+//
+//        System.out.println("Project added Successfully!");
 
         // get all projects
 

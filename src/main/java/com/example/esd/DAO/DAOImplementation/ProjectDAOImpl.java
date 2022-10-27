@@ -6,6 +6,8 @@ import com.example.esd.DAO.ProjectDAO;
 import com.example.esd.Util.HibernateSessionUtil;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,13 +15,21 @@ import java.util.List;
 public class ProjectDAOImpl implements ProjectDAO {
     @Override
     public boolean addProject(Project projectObj) {
-        return false;
+        try(Session session = HibernateSessionUtil.getSession()){
+            Transaction t = session.beginTransaction();
+            session.persist(projectObj);
+            t.commit();
+            return true;
+        } catch (HibernateException exception) {
+            System.out.println(exception.getLocalizedMessage());
+            return false;
+        }
     }
 
 
     @Override
     public List<Project> getProjectList() {
-        try (Session session = HibernateSessionUtil.getSession();){
+        try (Session session = HibernateSessionUtil.getSession()){
             List<Project> projectsList = new ArrayList<>();
             for (final Object p : session.createQuery("from Project ").list()) {
                 projectsList.add((Project) p);
@@ -33,7 +43,24 @@ public class ProjectDAOImpl implements ProjectDAO {
     }
 
     @Override
-    public boolean updateProjectName(int projectID) {
-        return false;
+    public boolean updateProjectName(int projectID, String updatedName) {
+
+        try (Session session = HibernateSessionUtil.getSession()) {
+            Transaction t = session.beginTransaction();
+
+            Query q = session.createQuery("from Project where projectID=:ID");
+            q.setParameter("ID", 1);
+
+            Project result = (Project)q.list().get(0);
+            result.setProjectName(updatedName);
+            session.update(result);
+            t.commit();
+            return true;
+
+        }
+        catch (HibernateException exception) {
+            System.out.print(exception.getLocalizedMessage());
+            return false;
+        }
     }
 }

@@ -1,5 +1,5 @@
 package com.example.esd.Bean;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -19,8 +19,7 @@ public class Department {
     @Column(name="dept_address")
     private String deptAddress;
 
-    @OneToMany(mappedBy = "department", fetch = FetchType.EAGER)    // name of class member variable in Employee class; it will be mapped with that variable
-    @JsonIgnore
+    @OneToMany(mappedBy = "empDepartment" , fetch = FetchType.EAGER)    // name of class member variable in Employee class; it will be mapped with that variable
     private List<Employee> employeesList;
 
     public Department() {

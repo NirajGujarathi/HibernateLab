@@ -7,5 +7,5 @@ import java.util.List;
 public interface ProjectDAO {
     boolean addProject(Project projectObj);
     List<Project> getProjectList();
-    boolean updateProjectName(int projectID);
+    boolean updateProjectName(int projectID,  String updatedName);
 }

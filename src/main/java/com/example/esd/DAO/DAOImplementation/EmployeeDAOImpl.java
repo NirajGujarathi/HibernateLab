@@ -40,7 +40,7 @@ public class EmployeeDAOImpl implements EmployeeDAO {
     @Override
     public List<Employee> getEmployeeSalaryInRange(long lowerBound, long upperBound) {
         try(Session session = HibernateSessionUtil.getSession()){
-            Transaction transaction = session.beginTransaction();
+
             List<Employee> employeeList = new ArrayList<>();
             Query query = session.createQuery("from Employee where salary between :lowerSalary and :upperSalary");
             query.setParameter("lowerSalary", lowerBound);
