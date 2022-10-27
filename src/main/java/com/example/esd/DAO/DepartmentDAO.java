@@ -7,5 +7,6 @@ import java.util.List;
 
 public interface DepartmentDAO {
     boolean addDepartment(Department deptObj);
+    List<Department> getDepartmentList();
     List<Employee> employeeListInDepartment(int deptID);
 }

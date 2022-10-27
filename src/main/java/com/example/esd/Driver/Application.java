@@ -16,11 +16,11 @@ import java.util.List;
 public class Application {
 
     public static void main(String[] args) {
-        System.out.println("Application Started");
+        System.out.println("--- \tApplication Started ---");
 
         runHibernateLab();
 
-        System.out.println("Application Ended");
+        System.out.println("--- \tApplication Ended ---");
         System.out.println("-----------------------------------------------------------");
     }
 
@@ -47,9 +47,21 @@ public class Application {
         System.out.println("--- \tDepartments Added Successfully! ---");
         System.out.println("-----------------------------------------------------------");
 
+        List<Department> deptList=deptdao.getDepartmentList();
+        if(deptList.size()>0){
+            for(Department dept: deptList){
+                System.out.println(dept);
+            }
+        }
+        else{
+            System.out.println("no departments :)");
+        }
+        System.out.println("--- \tFetched Department List ---");
+        System.out.println("-----------------------------------------------------------");
 
-        EmployeeDAO empdao= new EmployeeDAOImpl();
+
         // add employees
+        EmployeeDAO empdao= new EmployeeDAOImpl();
         Employee emp1= new Employee();
         emp1.setEmployeeName("John");
         emp1.setEmployeeGender("male");
@@ -112,14 +124,14 @@ public class Application {
         // delete employee
         int empID= 4;
         if(empdao.deleteEmployee(empID))
-            System.out.println("Employee Delete Success");
+            System.out.println("--- \tEmployee Delete Success ---");
         else
             System.out.println("Delete failed");
         System.out.println("-----------------------------------------------------------");
 
         // avg salary
         Double avgSalary= empdao.avgSalary();
-        System.out.println("Average Salary of all Employees= "+avgSalary);
+        System.out.println("--- \tAverage Salary of all Employees = "+avgSalary +" ---");
         System.out.println("-----------------------------------------------------------");
 
 
@@ -154,13 +166,12 @@ public class Application {
         emplist3.add(emp3);
         p3.setEmployeesList(emplist3);
 
-
         ProjectDAO pDAO= new ProjectDAOImpl();
         pDAO.addProject(p1);
         pDAO.addProject(p2);
         pDAO.addProject(p3);
 
-        System.out.println("Project added successfully!");
+        System.out.println("--- \tProject added successfully! ---");
         System.out.println("-----------------------------------------------------------");
 
 
@@ -174,7 +185,7 @@ public class Application {
         else{
             System.out.println("no projects :)");
         }
-        System.out.println("Projects retrieved successfully!");
+        System.out.println("--- \tProjects retrieved successfully! ---");
         System.out.println("-----------------------------------------------------------");
 
 
@@ -182,10 +193,10 @@ public class Application {
         int pid= 1;
         boolean res= pDAO.updateProjectName(pid,"AI_ML");
         if(res)
-            System.out.println("Project name update successfully! to AI_ML");
+            System.out.println("--- \tProject name update successfully! to AI_ML ---");
         else
             System.out.println("can not update ");
-        System.out.println("-----------------------------------------------------------");
 
+        System.out.println("-----------------------------------------------------------");
     }
 }
